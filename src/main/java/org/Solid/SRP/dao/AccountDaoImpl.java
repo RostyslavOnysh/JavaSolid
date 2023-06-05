@@ -1,4 +1,4 @@
-package org.Solid.dao;
+package org.Solid.SRP.dao;
 
 import org.Solid.SRP.db.Storage;
 import org.Solid.SRP.model.Account;

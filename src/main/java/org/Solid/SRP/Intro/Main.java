@@ -1,4 +1,4 @@
-package org.Solid.Intro;
+package org.Solid.SRP.Intro;
 
 public class Main {
     public static void main(String[] args) {

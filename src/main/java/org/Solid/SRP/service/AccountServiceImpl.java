@@ -1,7 +1,7 @@
 package org.Solid.SRP.service;
 
 import org.Solid.SRP.model.Account;
-import org.Solid.dao.AccountDao;
+import org.Solid.SRP.dao.AccountDao;
 
 public class AccountServiceImpl implements AccountService {
     private AccountDao accountDao;
