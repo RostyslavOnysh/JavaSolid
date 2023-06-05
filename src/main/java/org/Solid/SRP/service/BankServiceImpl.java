@@ -1,5 +1,6 @@
 package org.Solid.SRP.service;
 
+import org.Solid.SRP.dao.AccountDaoImpl;
 import org.Solid.SRP.model.Account;
 import org.Solid.SRP.dao.AccountDao;
 
@@ -7,6 +8,12 @@ import java.math.BigDecimal;
 
 public class BankServiceImpl implements BankService {
     private AccountDao accountDao;
+
+    public BankServiceImpl(AccountDaoImpl accountDao, CommissionStrategy commissionStrategy) {
+        this.commissionStrategy = commissionStrategy;
+    }
+
+    private CommissionStrategy commissionStrategy;
 
 
     @Override
@@ -22,12 +29,10 @@ public class BankServiceImpl implements BankService {
         // if Account.TYPE.GOLD --> commission is 3 UAH
         // if Account.TYPE.PLATINUM --> commission is 0 UAH
         // if Account.TYPE.USUAL --> commission is 10 UAH
-BigDecimal commission = new BigDecimal(0);
-        if (fromAccount.getType() == Account.Type.REGULAR) {
-commission = amount.multiply(new BigDecimal("0.01"));
-        }else if (fromAccount.getType() == Account.Type.GOLD) {
-            commission = new BigDecimal(3);
-        }
+
+
+
+        BigDecimal commission = commissionStrategy.get(fromAccount.getType()).getCommission(amount);
 
         BigDecimal newValueFrom = fromAccount.getAmount().subtract(amount).subtract(commission);
         fromAccount.setAmount(newValueFrom);
