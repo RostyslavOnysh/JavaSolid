@@ -1,6 +1,6 @@
 package org.Solid.LSP.model;
 
-public class Parrot implements  Bird{
+public class Parrot implements  FlyingBird{
     @Override
     public void dance() {
         System.out.println("I`m dancing");
